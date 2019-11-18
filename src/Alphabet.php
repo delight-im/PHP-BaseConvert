@@ -60,34 +60,29 @@ final class Alphabet {
 	 * @return string|null
 	 */
 	public static function convert($number, $fromAlphabet, $toAlphabet) {
-		if (\is_int($number) || (\is_string($number) && $number !== '')) {
-			if (\is_string($fromAlphabet) && \strlen($fromAlphabet) >= 2) {
-				if (\is_string($toAlphabet) && \strlen($toAlphabet) >= 2) {
-					$decimal = self::toDecimal($number, $fromAlphabet);
-
-					if ($decimal !== null) {
-						if ($toAlphabet !== self::DECIMAL) {
-							return self::fromDecimal($decimal, $toAlphabet);
-						}
-						else {
-							return $decimal;
-						}
-					}
-					else {
-						return null;
-					}
-				}
-				else {
-					return null;
-				}
-			}
-			else {
-				return null;
-			}
-		}
-		else {
+		if (!\is_int($number) && (!\is_string($number) || $number === '')) {
 			return null;
 		}
+
+		if (!\is_string($fromAlphabet) || \strlen($fromAlphabet) < 2) {
+			return null;
+		}
+
+		if (!\is_string($toAlphabet) || \strlen($toAlphabet) < 2) {
+			return null;
+		}
+
+		$decimal = self::toDecimal($number, $fromAlphabet);
+
+		if ($decimal === null) {
+			return null;
+		}
+
+		if ($toAlphabet === self::DECIMAL) {
+			return $decimal;
+		}
+
+		return self::fromDecimal($decimal, $toAlphabet);
 	}
 
 	/**

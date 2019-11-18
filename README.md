@@ -131,6 +131,11 @@ Alternatively, you can use any of the following pre-defined alphabets that shoul
 \Delight\BaseConvert\Alphabet::ALPHANUMERIC_UPPERCASE_HUMAN;
 \Delight\BaseConvert\Alphabet::ASCII_PRINTABLE;
 \Delight\BaseConvert\Alphabet::ASCII_PRINTABLE_HUMAN;
+\Delight\BaseConvert\Alphabet::BASE_32;
+\Delight\BaseConvert\Alphabet::BASE_58;
+\Delight\BaseConvert\Alphabet::BASE_64;
+\Delight\BaseConvert\Alphabet::BASE_64_URL;
+\Delight\BaseConvert\Alphabet::BASE_85;
 \Delight\BaseConvert\Alphabet::BINARY;
 \Delight\BaseConvert\Alphabet::BYTE;
 \Delight\BaseConvert\Alphabet::DECIMAL;

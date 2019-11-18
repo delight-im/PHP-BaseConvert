@@ -86,8 +86,8 @@ final class Alphabet {
 	 */
 	public static function convert($number, $fromAlphabet, $toAlphabet) {
 		if (\is_int($number) || (\is_string($number) && $number !== '')) {
-			if (\is_string($fromAlphabet) && (\strlen($fromAlphabet) >= 2 || $fromAlphabet === self::BYTE)) {
-				if (\is_string($toAlphabet) && (\strlen($toAlphabet) >= 2 || $toAlphabet === self::BYTE)) {
+			if (\is_string($fromAlphabet) && \strlen($fromAlphabet) >= 2) {
+				if (\is_string($toAlphabet) && \strlen($toAlphabet) >= 2) {
 					$decimal = self::toDecimal($number, $fromAlphabet);
 
 					if ($decimal !== null) {

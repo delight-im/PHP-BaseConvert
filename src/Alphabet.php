@@ -8,6 +8,8 @@
 
 namespace Delight\BaseConvert;
 
+use Delight\Alphabets\Alphabet as Pool;
+
 /** Conversion of numbers and numeric strings between different alphabets, with pre-defined alphabets that may be used as sources or targets */
 final class Alphabet {
 
@@ -130,7 +132,7 @@ final class Alphabet {
 		if ($fromAlphabet === self::BYTE) {
 			$outputGmp = \gmp_import($number);
 		}
-		elseif (self::isStandardAlphabet($fromAlphabet)) {
+		elseif (Pool::isStandardAlphabet($fromAlphabet)) {
 			if ($fromBase >= 11 && $fromBase <= 36) {
 				if ($number === \strtoupper($number)) {
 					$number = \strtolower($number);
@@ -182,7 +184,7 @@ final class Alphabet {
 		if ($toAlphabet === self::BYTE) {
 			$output = \gmp_export($numberGmp);
 		}
-		elseif (self::isStandardAlphabet($toAlphabet)) {
+		elseif (Pool::isStandardAlphabet($toAlphabet)) {
 			$output = @\gmp_strval($number, $toBase);
 
 			if ($toBase >= 11 && $toBase <= 36) {
@@ -208,31 +210,6 @@ final class Alphabet {
 		}
 		else {
 			return $toAlphabet[0];
-		}
-	}
-
-	/**
-	 * Checks if the specified alphabet is a standard alphabet with 2 to 62 digits or characters
-	 *
-	 * @param string $alphabet
-	 * @return bool
-	 */
-	private static function isStandardAlphabet($alphabet) {
-		$base = \strlen($alphabet);
-
-		if ($base >= 2 && $base <= 62) {
-			if ($base <= 10) {
-				return $alphabet === \substr(self::DECIMAL, 0, $base);
-			}
-			elseif ($base <= 36) {
-				return $alphabet === \substr(self::ALPHANUMERIC_LOWERCASE, 0, $base) || $alphabet === \substr(self::ALPHANUMERIC_UPPERCASE, 0, $base);
-			}
-			else {
-				return $alphabet === \substr(self::ALPHANUMERIC, 0, $base);
-			}
-		}
-		else {
-			return false;
 		}
 	}
 

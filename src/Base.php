@@ -25,40 +25,35 @@ final class Base {
 	 * @return string|null
 	 */
 	public static function convert($number, $fromBase, $toBase) {
-		if (\is_int($number) || (\is_string($number) && $number !== '')) {
-			if (\is_int($fromBase) || \is_numeric($fromBase)) {
-				$fromBase = (int) $fromBase;
-
-				if ($fromBase >= self::MIN && $fromBase <= self::MAX) {
-					if (\is_int($toBase) || \is_numeric($toBase)) {
-						$toBase = (int) $toBase;
-
-						if ($toBase >= self::MIN && $toBase <= self::MAX) {
-							return Alphabet::convert(
-								$number,
-								\substr(Alphabet::ALPHANUMERIC, 0, $fromBase),
-								\substr(Alphabet::ALPHANUMERIC, 0, $toBase)
-							);
-						}
-						else {
-							return null;
-						}
-					}
-					else {
-						return null;
-					}
-				}
-				else {
-					return null;
-				}
-			}
-			else {
-				return null;
-			}
-		}
-		else {
+		if (!\is_int($number) && (!\is_string($number) || $number === '')) {
 			return null;
 		}
+
+		if (!\is_int($fromBase) && !\is_numeric($fromBase)) {
+			return null;
+		}
+
+		$fromBase = (int) $fromBase;
+
+		if ($fromBase < self::MIN || $fromBase > self::MAX) {
+			return null;
+		}
+
+		if (!\is_int($toBase) && !\is_numeric($toBase)) {
+			return null;
+		}
+
+		$toBase = (int) $toBase;
+
+		if ($toBase < self::MIN || $toBase > self::MAX) {
+			return null;
+		}
+
+		return Alphabet::convert(
+			$number,
+			\substr(Alphabet::ALPHANUMERIC, 0, $fromBase),
+			\substr(Alphabet::ALPHANUMERIC, 0, $toBase)
+		);
 	}
 
 	private function __construct() {}

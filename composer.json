@@ -3,7 +3,8 @@
 	"description": "Conversion of arbitrarily large numbers between any two bases or alphabets",
 	"require": {
 		"php": ">=5.6.0",
-		"ext-gmp": "*"
+		"ext-gmp": "*",
+		"delight-im/alphabets": "^1.0"
 	},
 	"type": "library",
 	"keywords": [ "base", "convert", "converter", "decimal", "hex", "hexadecimal", "octal", "binary", "alpha", "alphanumeric", "ascii", "number", "numbers", "digit", "digits", "transform", "transformation" ],
